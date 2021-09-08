@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-import { databaseConfig } from './config';
+import databaseConfig from './config/dbConfig';
 import { Todo } from './entity/Todo';
 
 createConnection({

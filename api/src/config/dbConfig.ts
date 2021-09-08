@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const databaseConfig = {
+const databaseConfig = {
   database: process.env.DATABASE_NAME,
   host: process.env.DATABASE_HOST,
   port: Number(process.env.DATABASE_PORT as string) || 3306,
@@ -10,3 +10,5 @@ export const databaseConfig = {
   password: process.env.DATABASE_PASSWORD,
   synchronize: true,
 };
+
+export default databaseConfig;

@@ -4,6 +4,7 @@
   "description": "todo 매니저 API 서버",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node app.ts",
     "db": "ts-node src/database.ts"
   },
   "repository": {
