@@ -1,16 +1,27 @@
 {
-  "name": "redux-study",
+  "name": "todo-manager-client",
   "version": "1.0.0",
-  "description": "",
+  "description": "todo 매니저 클라이언트",
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js --progress",
     "build": "webpack --mode production",
     "start": "webpack --mode development --progress"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hayoung123/todo-manager.git"
+  },
+  "keywords": [
+    "todo",
+    "todo list"
+  ],
+  "author": "kyle",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hayoung123/todo-manager/issues"
+  },
+  "homepage": "https://github.com/hayoung123/todo-manager#readme",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
