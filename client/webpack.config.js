@@ -22,6 +22,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+      {
         test: /\.ts(x?)$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
@@ -34,7 +44,7 @@ module.exports = {
         use: ['@svgr/webpack'],
       },
       {
-        test: /\.(png|jp(e*)g)$/,
+        test: /\.(png|jp(e*)g|gif)$/,
         loader: 'file-loader',
         options: {
           name: 'asset/[name].[ext]?[hash]',

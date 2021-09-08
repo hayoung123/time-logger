@@ -6,9 +6,10 @@ const PORT = process.env.PORT || 8000;
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'eval-cheap-source-map',
   devServer: {
     port: PORT,
     proxy: {},
+    historyApiFallback: true,
   },
 });
