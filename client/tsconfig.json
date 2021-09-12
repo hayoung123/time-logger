@@ -68,6 +68,8 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "baseUrl": ".",
     "paths": {
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
       "@src/*": ["src/*"],
       "@public/*": ["public/*"]
     }
