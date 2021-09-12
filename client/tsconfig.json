@@ -70,6 +70,8 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
       "@src/*": ["src/*"],
       "@public/*": ["public/*"]
     }
