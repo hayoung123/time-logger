@@ -1,37 +1,45 @@
 import { atom } from 'recoil';
 
-type TodoListType = {
+export type TodoType = {
+  id: number;
   title: string;
-  contents: string[];
+  contents: { name: string; status: boolean }[];
   limitTime: number;
-  proceedTime: {
-    start: null | Date;
-    end: null | Date;
+  proceedTime: null | {
+    start: null | number;
+    end: null | number;
   };
 };
 
-const mockTodoList: TodoListType[] = [
+const mockTodoList: TodoType[] = [
   {
+    id: 1,
     title: 'test1',
-    contents: ['test1', 'test2', 'test3'],
+    contents: [
+      { name: 'test1', status: false },
+      { name: 'test2', status: true },
+      { name: 'test3', status: false },
+    ],
     limitTime: 60,
-    proceedTime: {
-      start: null,
-      end: null,
-    },
+    proceedTime: null,
   },
   {
+    id: 2,
     title: 'test1',
-    contents: ['test1', 'test2', 'test3'],
+    contents: [
+      { name: 'test1', status: false },
+      { name: 'test2', status: false },
+      { name: 'test3', status: false },
+    ],
     limitTime: 60,
     proceedTime: {
-      start: new Date(),
-      end: null,
+      start: 120,
+      end: 130,
     },
   },
 ];
 
-export const todoListState = atom<TodoListType[]>({
+export const todoListState = atom<TodoType[]>({
   key: '투두 리스트',
   default: mockTodoList,
 });
