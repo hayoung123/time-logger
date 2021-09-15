@@ -19,11 +19,10 @@ export default function Card({ todoData }: Props): ReactElement {
 
   const handleCardClick = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.target;
-    console.dir(target);
-    console.log(!(target instanceof HTMLElement));
+
     if (!(target instanceof HTMLElement)) return;
 
-    if (target.tagName === 'INPUT') {
+    if (target.closest('.card-check-list')) {
       return;
     }
     setIsCheckOpen((isOpen) => !isOpen);

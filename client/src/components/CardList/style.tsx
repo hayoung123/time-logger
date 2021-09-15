@@ -16,6 +16,11 @@ export const Card = styled.div`
   .card-title {
     font-weight: 600;
     font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-check-list {
+    width: fit-content;
   }
 
   .card-expect-time,
