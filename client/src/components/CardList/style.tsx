@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const CardListContainer = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
 export const CardList = styled.div`
   min-width: 300px;
 
@@ -15,14 +10,16 @@ export const CardList = styled.div`
   }
 `;
 
-export const Card = styled.div`
+export const CardSize = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   width: 300px;
   min-height: 64px;
   padding: 1rem;
   border-radius: 6px;
   margin-bottom: 1rem;
+`;
 
+export const Card = styled(CardSize)`
   & > div:not(:last-child) {
     margin-bottom: 0.5rem;
   }
