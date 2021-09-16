@@ -30,7 +30,7 @@ export default function Card({ todoData }: Props): ReactElement {
 
   return (
     <S.Card onClick={handleCardClick}>
-      <div className='card-title'>title</div>
+      <div className='card-title'>{title}</div>
       {isCheckOpen && <div className='card-check-list'>{checkBoxList}</div>}
       <div className='card-expect-time'>
         <div>예상시간</div>

@@ -1,11 +1,25 @@
 import styled from 'styled-components';
 
-export const CardList = styled.div``;
+export const CardListContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const CardList = styled.div`
+  min-width: 300px;
+
+  .card-list-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+`;
 
 export const Card = styled.div`
+  background-color: ${({ theme }) => theme.color.white};
   width: 300px;
+  min-height: 64px;
   padding: 1rem;
-  box-shadow: 0px 1px 30px rgba(224, 224, 224, 0.3);
   border-radius: 6px;
   margin-bottom: 1rem;
 
