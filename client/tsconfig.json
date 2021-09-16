@@ -72,6 +72,7 @@
       "@pages/*": ["src/pages/*"],
       "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"],
       "@src/*": ["src/*"],
       "@public/*": ["public/*"]
     }

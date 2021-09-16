@@ -3,10 +3,21 @@ import styled from 'styled-components';
 export const CardList = styled.div`
   min-width: 300px;
 
-  .card-list-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+  .card-list-header {
+    display: flex;
+    justify-content: space-between;
+    .header-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .plus-btn {
+      fill: ${({ theme }) => theme.color.black};
+      cursor: pointer;
+    }
+    .plus-btn:hover {
+      fill: ${({ theme }) => theme.color.blue};
+    }
   }
 `;
 
