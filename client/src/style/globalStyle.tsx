@@ -7,5 +7,8 @@ export const GlobalStyle = createGlobalStyle`
       width:100%;
       height:100%;
   }
-
+  button{
+    border:none;
+    background-color: transparent;
+  }
 `;
