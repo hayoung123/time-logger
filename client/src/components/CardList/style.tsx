@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const CardList = styled.div`
   min-width: 300px;
-
   .card-list-header {
     display: flex;
     justify-content: space-between;
@@ -23,7 +22,7 @@ export const CardList = styled.div`
 
 export const CardSize = styled.div`
   background-color: ${({ theme }) => theme.color.white};
-  width: 300px;
+  max-width: 300px;
   min-height: 64px;
   padding: 1rem;
   border-radius: 6px;
