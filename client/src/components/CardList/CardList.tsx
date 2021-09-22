@@ -5,6 +5,7 @@ import PlusIcon from '@assets/plusIcon.svg';
 
 import { TodoType } from '@store/todo/todo';
 import Card from './Card/Card';
+import TodoForm from '@components/TodoForm/TodoForm';
 
 interface Props {
   title: string;
@@ -19,6 +20,7 @@ export default function CardList({ title, todoListData }: Props): ReactElement {
         <div className='header-title'>{title}</div>
         <PlusIcon className='plus-btn' />
       </div>
+      <TodoForm />
       <div className='cardList'>{cardList}</div>
     </S.CardList>
   );
