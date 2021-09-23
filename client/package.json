@@ -7,7 +7,7 @@
     "dev": "webpack serve --config webpack.dev.js --progress",
     "build": "webpack --mode production",
     "start": "webpack --mode development --progress",
-    "test": "jest"
+    "test": "jest --config=jest.config.js"
   },
   "repository": {
     "type": "git",
