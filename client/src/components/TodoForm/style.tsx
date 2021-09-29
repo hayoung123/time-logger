@@ -2,14 +2,52 @@ import styled from 'styled-components';
 
 import { CardSize } from '@components/CardList/style';
 
-export const TodoForm = styled(CardSize)`
-  input: ${CardSize};
+type TodoFormType = {
+  title: string;
+};
+
+export const TodoForm = styled(CardSize)<TodoFormType>`
+  .todo-form-title {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+
   .check-add-form {
     display: flex;
     align-items: center;
+    margin-bottom: 0.2rem;
+    input {
+      font-size: 1rem;
+      width: 180px;
+    }
 
-    & > svg {
-      fill: ${({ theme }) => theme.color.black};
+    & svg {
+      cursor: pointer;
+      fill: ${({ theme }) => theme.color.blue};
+    }
+  }
+
+  .check-list > *:not(:last-child) {
+    margin-bottom: 0.3rem;
+  }
+
+  .todo-form-btns {
+    margin-top: 1rem;
+
+    .todo-form-cancel-btn {
+      opacity: 0.5;
+      background-color: ${({ theme }) => theme.color.lightGray};
+      margin-right: 1rem;
+    }
+    .todo-form-cancel-btn:hover {
+      opacity: 1;
+    }
+
+    .todo-form-submit-btn {
+      color: white;
+      opacity: ${({ title }) => (title ? 1 : 0.5)};
+      background-color: ${({ theme }) => theme.color.blue};
     }
   }
 `;
@@ -20,9 +58,6 @@ export const TodoCheckItem = styled.li`
   gap: 8px;
   svg {
     cursor: pointer;
-    fill: ${({ theme }) => theme.color.black};
-  }
-  svg:hover {
     fill: ${({ theme }) => theme.color.red};
   }
 `;

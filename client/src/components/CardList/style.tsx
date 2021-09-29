@@ -11,10 +11,6 @@ export const CardList = styled.div`
       margin-bottom: 1rem;
     }
     .plus-btn {
-      fill: ${({ theme }) => theme.color.black};
-      cursor: pointer;
-    }
-    .plus-btn:hover {
       fill: ${({ theme }) => theme.color.blue};
     }
   }

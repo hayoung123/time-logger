@@ -11,4 +11,8 @@ export const Input = styled.input`
   &::plactholder {
     color: ${({ theme }) => theme.color.lightGray};
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
