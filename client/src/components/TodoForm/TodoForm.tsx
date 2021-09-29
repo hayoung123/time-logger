@@ -11,10 +11,12 @@ interface Props {}
 export default function TodoForm({}: Props): ReactElement {
   const { value: title, handleChange: handleTitleChange } = useInput('');
   const { value: check, setValue: setCheck, handleChange: handleCheckChange } = useInput('');
+  const { value: hour, handleChange: handleHourChange } = useInput('');
+  const { value: minute, handleChange: handleMinuteChange } = useInput('');
   const [checkList, setCheckList] = useState<string[]>([]);
   const handleCheckAddSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(check);
+    if (!check) return;
     setCheckList((checkList) => [...checkList, check]);
     setCheck('');
   };
@@ -42,6 +44,16 @@ export default function TodoForm({}: Props): ReactElement {
         </button>
       </form>
       <ul className='check-list'>{checkListElem}</ul>
+      <div className='todo-form-predict'>
+        <div className='predict-hour'>
+          <Common.Input placeholder='시간' value={hour} onChange={handleHourChange} />
+          <span>h</span>
+        </div>
+        <div className='predict-minute'>
+          <Common.Input placeholder='분' value={minute} onChange={handleMinuteChange} />
+          <span>m</span>
+        </div>
+      </div>
       <div className='todo-form-btns'>
         <Common.Button className='todo-form-cancel-btn'>취소</Common.Button>
         <Common.Button className='todo-form-submit-btn'>확인</Common.Button>

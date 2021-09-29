@@ -50,6 +50,30 @@ export const TodoForm = styled(CardSize)<TodoFormType>`
       background-color: ${({ theme }) => theme.color.blue};
     }
   }
+
+  .todo-form-predict {
+    display: flex;
+    margin-top: 0.5rem;
+    /* gap: 0.5rem; */
+    font-size: 0.875rem;
+    & > div {
+      display: flex;
+      input {
+        width: 24px;
+        text-align: right;
+      }
+      input::placeholder {
+        text-align: right;
+        font-size: 0.7rem;
+      }
+    }
+
+    & > .predict-minute {
+      input {
+        width: 20px;
+      }
+    }
+  }
 `;
 
 export const TodoCheckItem = styled.li`
