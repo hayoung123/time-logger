@@ -5,14 +5,15 @@ import * as Common from '@components/Common/commonStyle';
 import PlusIcon from '@assets/plusIcon.svg';
 import { useInput } from '@src/hook/useInput';
 import TodoCheckItem from './TodoCheckItem';
+import TimeEditForm from '@components/Common/TimeEditForm';
 
 interface Props {}
 
 export default function TodoForm({}: Props): ReactElement {
   const { value: title, handleChange: handleTitleChange } = useInput('');
   const { value: check, setValue: setCheck, handleChange: handleCheckChange } = useInput('');
-  const { value: hour, handleChange: handleHourChange } = useInput('');
-  const { value: minute, handleChange: handleMinuteChange } = useInput('');
+  const hourCtrl = useInput('');
+  const minuteCtrl = useInput('');
   const [checkList, setCheckList] = useState<string[]>([]);
   const handleCheckAddSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,14 +46,8 @@ export default function TodoForm({}: Props): ReactElement {
       </form>
       <ul className='check-list'>{checkListElem}</ul>
       <div className='todo-form-predict'>
-        <div className='predict-hour'>
-          <Common.Input placeholder='시간' value={hour} onChange={handleHourChange} />
-          <span>h</span>
-        </div>
-        <div className='predict-minute'>
-          <Common.Input placeholder='분' value={minute} onChange={handleMinuteChange} />
-          <span>m</span>
-        </div>
+        <div>예상시간</div>
+        <TimeEditForm hourCtrl={hourCtrl} minuteCtrl={minuteCtrl} />
       </div>
       <div className='todo-form-btns'>
         <Common.Button className='todo-form-cancel-btn'>취소</Common.Button>
