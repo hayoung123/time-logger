@@ -12,9 +12,10 @@ interface Props {}
 export default function TodoForm({}: Props): ReactElement {
   const { value: title, handleChange: handleTitleChange } = useInput('');
   const { value: check, setValue: setCheck, handleChange: handleCheckChange } = useInput('');
-  const hourCtrl = useInput('');
-  const minuteCtrl = useInput('');
+  const hourCtrl = useInput('', hourValidate);
+  const minuteCtrl = useInput('', minuteValidate);
   const [checkList, setCheckList] = useState<string[]>([]);
+
   const handleCheckAddSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!check) return;
@@ -25,6 +26,18 @@ export default function TodoForm({}: Props): ReactElement {
   const checkListElem = checkList.map((checkItem, idx) => (
     <TodoCheckItem key={checkItem + idx} value={checkItem} setCheckList={setCheckList} />
   ));
+
+  function hourValidate(hour: string) {
+    if (+hour > 24) return '23';
+    if (+hour < 0) return '';
+    return hour;
+  }
+
+  function minuteValidate(minute: string) {
+    if (+minute >= 60) return '59';
+    if (+minute < 0) return '';
+    return minute;
+  }
 
   return (
     <S.TodoForm title={title}>
