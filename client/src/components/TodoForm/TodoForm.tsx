@@ -1,15 +1,23 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
 import * as S from './style';
 import * as Common from '@components/Common/commonStyle';
+import { useSetRecoilState } from 'recoil';
 
 import PlusIcon from '@assets/plusIcon.svg';
-import { useInput } from '@src/hook/useInput';
+
 import TodoCheckItem from './TodoCheckItem';
 import TimeEditForm from '@components/Common/TimeEditForm';
+
+import { useInput } from '@src/hook/useInput';
+import { todoListState, TodoType } from '@store/todo/todo';
+import { hourValidate, minuteValidate } from '@utils/validate/time';
+import { stringTimeToMinute } from '@utils/date';
 
 interface Props {}
 
 export default function TodoForm({}: Props): ReactElement {
+  const setTodoList = useSetRecoilState(todoListState);
+
   const { value: title, handleChange: handleTitleChange } = useInput('');
   const { value: check, setValue: setCheck, handleChange: handleCheckChange } = useInput('');
   const hourCtrl = useInput('', hourValidate);
@@ -23,21 +31,21 @@ export default function TodoForm({}: Props): ReactElement {
     setCheck('');
   };
 
+  const handleTodoSubmit = () => {
+    if (!title) return;
+    const newTodo: TodoType = {
+      id: Date.now(),
+      title,
+      contents: checkList.map((check) => ({ name: check, status: false })),
+      limitTime: stringTimeToMinute(hourCtrl.value, minuteCtrl.value),
+      proceedTime: null,
+    };
+    setTodoList((todoList) => [...todoList, newTodo]);
+  };
+
   const checkListElem = checkList.map((checkItem, idx) => (
     <TodoCheckItem key={checkItem + idx} value={checkItem} setCheckList={setCheckList} />
   ));
-
-  function hourValidate(hour: string) {
-    if (+hour > 24) return '23';
-    if (+hour < 0) return '';
-    return hour;
-  }
-
-  function minuteValidate(minute: string) {
-    if (+minute >= 60) return '59';
-    if (+minute < 0) return '';
-    return minute;
-  }
 
   return (
     <S.TodoForm title={title}>
@@ -64,7 +72,9 @@ export default function TodoForm({}: Props): ReactElement {
       </div>
       <div className='todo-form-btns'>
         <Common.Button className='todo-form-cancel-btn'>취소</Common.Button>
-        <Common.Button className='todo-form-submit-btn'>확인</Common.Button>
+        <Common.Button className='todo-form-submit-btn' onClick={handleTodoSubmit}>
+          확인
+        </Common.Button>
       </div>
     </S.TodoForm>
   );

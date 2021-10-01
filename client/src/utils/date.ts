@@ -18,3 +18,8 @@ export const DateToMin = (date: Date): number => {
 const addZero = (num: number): string => {
   return num < 10 ? '0' + num : num + '';
 };
+
+export const stringTimeToMinute = (hour: string, minute: string): number => {
+  if (!hour && !minute) return 0;
+  return +hour * 60 + +minute;
+};
