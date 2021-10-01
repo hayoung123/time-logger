@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactElement, useState } from 'react';
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
 import * as S from './style';
 import * as Common from '@src/style/common';
 import { useSetRecoilState } from 'recoil';
@@ -43,16 +43,19 @@ export default function TodoForm({ closeAddForm }: Props): ReactElement {
       proceedTime: null,
     };
     setTodoList((todoList) => [...todoList, newTodo]);
-    clearTodoForm();
+    closeAddForm();
   };
 
-  const clearTodoForm = () => {
-    setTitle('');
-    setCheck('');
-    hourCtrl.setValue('');
-    minuteCtrl.setValue('');
-    setCheckList([]);
-  };
+  useEffect(() => {
+    const clearTodoForm = () => {
+      setTitle('');
+      setCheck('');
+      hourCtrl.setValue('');
+      minuteCtrl.setValue('');
+      setCheckList([]);
+    };
+    clearTodoForm();
+  }, []);
 
   const checkListElem = checkList.map((checkItem, idx) => (
     <TodoCheckItem key={checkItem + idx} value={checkItem} setCheckList={setCheckList} />

@@ -16,7 +16,6 @@ export default function CardList({ title, todoListData }: Props): ReactElement {
   const [isOpenAddForm, setIsOpenAddForm] = useState(false);
   const cardList = todoListData.map((todoData) => <Card key={todoData.id} {...{ todoData }} />);
 
-  const openAddForm = () => setIsOpenAddForm(true);
   const closeAddForm = () => setIsOpenAddForm(false);
   const toggleAddForm = () => setIsOpenAddForm((isOpen) => !isOpen);
 
