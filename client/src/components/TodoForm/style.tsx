@@ -33,6 +33,7 @@ export const TodoForm = styled(CardSize)<TodoFormType>`
   }
 
   .todo-form-btns {
+    display: flex;
     margin-top: 1rem;
 
     .todo-form-cancel-btn {
@@ -53,26 +54,9 @@ export const TodoForm = styled(CardSize)<TodoFormType>`
 
   .todo-form-predict {
     display: flex;
+    align-items: center;
     margin-top: 0.5rem;
-    /* gap: 0.5rem; */
     font-size: 0.875rem;
-    & > div {
-      display: flex;
-      input {
-        width: 24px;
-        text-align: right;
-      }
-      input::placeholder {
-        text-align: right;
-        font-size: 0.7rem;
-      }
-    }
-
-    & > .predict-minute {
-      input {
-        width: 20px;
-      }
-    }
   }
 `;
 
