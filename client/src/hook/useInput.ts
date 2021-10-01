@@ -6,10 +6,11 @@ export type InputHookType = {
   handleChange: ({ target }: { target: HTMLInputElement | HTMLTextAreaElement }) => void;
 };
 
-export function useInput(initState = ''): InputHookType {
+export function useInput(initState: string, validate?: (value: string) => string): InputHookType {
   const [value, setValue] = useState<string>(initState);
   const handleChange = ({ target }: { target: HTMLInputElement | HTMLTextAreaElement }) => {
-    setValue(target.value);
+    if (validate) setValue(validate(target.value));
+    else setValue(target.value);
   };
 
   return { value, setValue, handleChange };
