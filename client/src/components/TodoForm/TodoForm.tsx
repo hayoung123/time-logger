@@ -1,6 +1,6 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
 import * as S from './style';
-import * as Common from '@components/Common/commonStyle';
+import * as Common from '@src/style/common';
 import { useSetRecoilState } from 'recoil';
 
 import PlusIcon from '@assets/plusIcon.svg';
@@ -13,12 +13,14 @@ import { todoListState, TodoType } from '@store/todo/todo';
 import { hourValidate, minuteValidate } from '@utils/validate/time';
 import { stringTimeToMinute } from '@utils/date';
 
-interface Props {}
+interface Props {
+  closeAddForm: () => void;
+}
 
-export default function TodoForm({}: Props): ReactElement {
+export default function TodoForm({ closeAddForm }: Props): ReactElement {
   const setTodoList = useSetRecoilState(todoListState);
 
-  const { value: title, handleChange: handleTitleChange } = useInput('');
+  const { value: title, setValue: setTitle, handleChange: handleTitleChange } = useInput('');
   const { value: check, setValue: setCheck, handleChange: handleCheckChange } = useInput('');
   const hourCtrl = useInput('', hourValidate);
   const minuteCtrl = useInput('', minuteValidate);
@@ -41,6 +43,15 @@ export default function TodoForm({}: Props): ReactElement {
       proceedTime: null,
     };
     setTodoList((todoList) => [...todoList, newTodo]);
+    clearTodoForm();
+  };
+
+  const clearTodoForm = () => {
+    setTitle('');
+    setCheck('');
+    hourCtrl.setValue('');
+    minuteCtrl.setValue('');
+    setCheckList([]);
   };
 
   const checkListElem = checkList.map((checkItem, idx) => (
@@ -71,7 +82,9 @@ export default function TodoForm({}: Props): ReactElement {
         <TimeEditForm hourCtrl={hourCtrl} minuteCtrl={minuteCtrl} />
       </div>
       <div className='todo-form-btns'>
-        <Common.Button className='todo-form-cancel-btn'>취소</Common.Button>
+        <Common.Button className='todo-form-cancel-btn' onClick={closeAddForm}>
+          취소
+        </Common.Button>
         <Common.Button className='todo-form-submit-btn' onClick={handleTodoSubmit}>
           확인
         </Common.Button>
