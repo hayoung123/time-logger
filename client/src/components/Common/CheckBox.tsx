@@ -3,14 +3,12 @@ import styled from 'styled-components';
 
 interface Props {
   name: string;
-  status: boolean;
+  isCheck: boolean;
+  handleCheckChange: () => void;
 }
 
 //TODO: 체크박스 변환시 인자로 api전송 받아와서 처리
-export default function CheckBox({ name, status }: Props): ReactElement {
-  const [isCheck, setIsCheck] = useState(status);
-
-  const handleCheckChange = () => setIsCheck((check) => !check);
+export default function CheckBox({ name, isCheck, handleCheckChange }: Props): ReactElement {
   return (
     <StyledCheckBox>
       <input type='checkbox' checked={isCheck} name={name} onChange={handleCheckChange} />

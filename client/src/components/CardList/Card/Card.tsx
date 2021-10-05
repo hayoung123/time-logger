@@ -2,7 +2,7 @@ import { MouseEvent, ReactElement, useState } from 'react';
 import * as S from '../style';
 
 import { TodoType } from '@store/todo/todo';
-import CheckBox from '@components/Common/CheckBox';
+import CardCheckBox from '@components/CardList/Card/CardCheckBox';
 import { minToClockTime, minToTime } from '@utils/date';
 
 interface Props {
@@ -14,7 +14,7 @@ export default function Card({ todoData }: Props): ReactElement {
   const { id, title, contents, limitTime, proceedTime } = todoData;
 
   const checkBoxList = contents.map(({ name, status }) => (
-    <CheckBox key={name} name={name} status={status} />
+    <CardCheckBox key={name} todoId={id} name={name} status={status} />
   ));
 
   const handleCardClick = (e: MouseEvent<HTMLDivElement>) => {
