@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import TodoListPage from './pages/TodoListPage';
+import TodoListPage from './pages/TodoListPage/TodoListPage';
 
 interface Props {}
 
