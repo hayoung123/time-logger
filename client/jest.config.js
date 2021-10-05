@@ -1,5 +1,3 @@
-const tsconfig = require('./tsconfig.json');
-
 function makeModuleNameMapper(srcPath, tsconfigPath) {
   //tsconfig에서 paths(절대경로) 가져오기
   const { paths } = require(tsconfigPath).compilerOptions;
@@ -18,8 +16,6 @@ function makeModuleNameMapper(srcPath, tsconfigPath) {
 
 const TS_CONFIG_PATH = './tsconfig.json';
 const SRC_PATH = '<rootDir>';
-
-console.log(tsconfig);
 
 module.exports = {
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx'],

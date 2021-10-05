@@ -32,20 +32,3 @@ test('compiling android goes as expected', () => {
   expect(() => compileAndroidCode()).toThrow('you are using the wrong JDK');
   expect(() => compileAndroidCode()).toThrow(/JDK/);
 });
-
-async function doAsync(cb1: any, cb2: any) {
-  await cb1();
-  await cb2();
-}
-
-test('doAsync calls both callbacks', () => {
-  expect.assertions(2);
-  function callback1(data: any) {
-    expect(data).toBeTruthy();
-  }
-  function callback2(data: any) {
-    expect(data).toBeTruthy();
-  }
-
-  doAsync(callback1, callback2);
-});
