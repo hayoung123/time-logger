@@ -25,8 +25,8 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   moduleNameMapper: {
-    ...makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
     '\\.svg': '<rootDir>/__mocks__/svgrMock.ts',
+    ...makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
   },
 
   testMatch: [
@@ -34,8 +34,5 @@ module.exports = {
     '<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))',
   ],
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  setupFilesAfterEnv: ['<rootDir>/setupTest.ts'],
 };
-
-// moduleNameMapper: {
-//   '^@/(.*)$': '<rootDir>/src/$1',
-// },
