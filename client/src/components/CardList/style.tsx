@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CardList = styled.div`
   min-width: 300px;
@@ -17,7 +17,7 @@ export const CardList = styled.div`
   }
 `;
 
-export const CardSize = styled.div`
+export const CardSize = css`
   background-color: ${({ theme }) => theme.color.white};
   max-width: 300px;
   min-height: 64px;
@@ -26,7 +26,8 @@ export const CardSize = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Card = styled(CardSize)`
+export const Card = styled.div`
+  ${CardSize}
   & > div:not(:last-child) {
     margin-bottom: 0.5rem;
   }

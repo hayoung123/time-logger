@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
 import { CardSize } from '@components/CardList/style';
+import { Button, Input } from '@src/style/common';
 
 type TodoFormType = {
   title: string;
 };
 
-export const TodoForm = styled(CardSize)<TodoFormType>`
+export const TodoForm = styled.form<TodoFormType>`
+  ${CardSize}
+  input {
+    ${Input}
+  }
   .todo-form-title {
     margin-bottom: 0.5rem;
     font-weight: 600;
@@ -35,6 +40,9 @@ export const TodoForm = styled(CardSize)<TodoFormType>`
   .todo-form-btns {
     display: flex;
     margin-top: 1rem;
+    button {
+      ${Button}
+    }
 
     .todo-form-cancel-btn {
       opacity: 0.5;
