@@ -9,7 +9,7 @@ interface Props {
   minuteCtrl: InputHookType;
 }
 
-export default function TimeEditForm({ hourCtrl, minuteCtrl }: Props): ReactElement {
+export default function TimeEditor({ hourCtrl, minuteCtrl }: Props): ReactElement {
   const { value: hour, setValue: setHour, handleChange: handleHourChange } = hourCtrl;
   const { value: minute, setValue: setMinute, handleChange: handleMinuteChange } = minuteCtrl;
   const [isEditHour, setIsEditHour] = useState(false);
@@ -28,7 +28,7 @@ export default function TimeEditForm({ hourCtrl, minuteCtrl }: Props): ReactElem
   };
 
   return (
-    <StyledTimeEditForm>
+    <StyledTimeEditor>
       {isEditHour ? (
         <StyledTimeInput
           type='number'
@@ -52,7 +52,7 @@ export default function TimeEditForm({ hourCtrl, minuteCtrl }: Props): ReactElem
       ) : (
         <StyledTimeDiv onClick={handleMinuteClick}>{minute || '00'}</StyledTimeDiv>
       )}
-    </StyledTimeEditForm>
+    </StyledTimeEditor>
   );
 }
 
@@ -61,7 +61,7 @@ const StyledTimeSize = css`
   height: 21px;
 `;
 
-const StyledTimeEditForm = styled.div`
+const StyledTimeEditor = styled.div`
   display: flex;
   & > div {
     ${StyledCenter}

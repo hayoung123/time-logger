@@ -3,7 +3,7 @@ import * as S from './style';
 
 import XIcon from '@assets/xIcon.svg';
 
-interface Props {
+export interface Props {
   value: string;
   setCheckList: Dispatch<SetStateAction<string[]>>;
 }

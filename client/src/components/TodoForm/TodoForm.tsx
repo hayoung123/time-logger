@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import * as S from './style';
 import * as Common from '@src/style/common';
 import { useSetRecoilState } from 'recoil';
@@ -6,14 +6,14 @@ import { useSetRecoilState } from 'recoil';
 import PlusIcon from '@assets/plusIcon.svg';
 
 import TodoCheckItem from './TodoCheckItem';
-import TimeEditForm from '@components/Common/TimeEditForm';
+import TimeEditor from '@components/Common/TimeEditor';
 
 import { useInput } from '@src/hook/useInput';
 import { todoListState, TodoType } from '@store/todo/todo';
 import { hourValidate, minuteValidate } from '@utils/validate/time';
 import { stringTimeToMinute } from '@utils/date';
 
-interface Props {
+export interface Props {
   closeAddForm: () => void;
 }
 
@@ -26,7 +26,7 @@ export default function TodoForm({ closeAddForm }: Props): ReactElement {
   const minuteCtrl = useInput('', minuteValidate);
   const [checkList, setCheckList] = useState<string[]>([]);
 
-  const handleCheckAddSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleCheckAddSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!check) return;
     setCheckList((checkList) => [...checkList, check]);
@@ -63,35 +63,42 @@ export default function TodoForm({ closeAddForm }: Props): ReactElement {
 
   return (
     <S.TodoForm title={title}>
-      <Common.Input
+      <label htmlFor='todo-title'></label>
+      <input
+        name='todo-title'
         placeholder='제목'
         className='todo-form-title'
         value={title}
         onChange={handleTitleChange}
       />
-      <form className='check-add-form' onSubmit={handleCheckAddSubmit}>
-        <Common.Input
+      <div className='check-add-form'>
+        <label htmlFor='todo-check-item'></label>
+        <input
+          name='todo-check-item'
           placeholder='상세항목을 추가하세요.'
           value={check}
           onChange={handleCheckChange}
         />
-        <button>
+        <button onClick={handleCheckAddSubmit}>
           <PlusIcon />
         </button>
-      </form>
+      </div>
       <ul className='check-list'>{checkListElem}</ul>
       <div className='todo-form-predict'>
         <div>예상시간</div>
-        <TimeEditForm hourCtrl={hourCtrl} minuteCtrl={minuteCtrl} />
+        <TimeEditor hourCtrl={hourCtrl} minuteCtrl={minuteCtrl} />
       </div>
       <div className='todo-form-btns'>
-        <Common.Button className='todo-form-cancel-btn' onClick={closeAddForm}>
+        <button type='button' className='todo-form-cancel-btn' onClick={closeAddForm}>
           취소
-        </Common.Button>
-        <Common.Button className='todo-form-submit-btn' onClick={handleTodoSubmit}>
+        </button>
+        <button type='submit' className='todo-form-submit-btn' onClick={handleTodoSubmit}>
           확인
-        </Common.Button>
+        </button>
       </div>
     </S.TodoForm>
   );
 }
+
+//TODO: formToJSON
+//https://ui.toast.com/weekly-pick/ko_20210630
