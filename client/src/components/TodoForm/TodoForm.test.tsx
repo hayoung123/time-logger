@@ -19,6 +19,13 @@ function renderTodoForm(props?: Partial<TodoFormType>) {
   const SubmitButton = () => result.getByText('확인');
   const CheckList = () => result.container.querySelector('.check-list');
 
+  const changeTitle = (title: string) => {
+    userEvent.type(TitleInput(), title);
+  };
+  const clearTitle = () => {
+    userEvent.clear(TitleInput());
+  };
+
   return {
     TitleInput,
     CheckItemInput,
@@ -26,6 +33,8 @@ function renderTodoForm(props?: Partial<TodoFormType>) {
     CancelButton,
     SubmitButton,
     CheckList,
+    changeTitle,
+    clearTitle,
   };
 }
 
@@ -37,5 +46,15 @@ describe('<TodoForm>', () => {
     expect(CancelButton()).toBeInTheDocument();
     expect(SubmitButton()).toBeInTheDocument();
     expect(CheckList()).toBeInTheDocument();
+  });
+
+  it('TitleInput에 따른 SubmitButton 활성화/비활성화 테스트', () => {
+    const { changeTitle, SubmitButton, clearTitle } = renderTodoForm();
+
+    changeTitle('hello');
+    expect(SubmitButton()).not.toBeDisabled();
+
+    clearTitle();
+    expect(SubmitButton()).toBeDisabled();
   });
 });
