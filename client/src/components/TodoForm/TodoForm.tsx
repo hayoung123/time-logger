@@ -1,6 +1,5 @@
-import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
+import React, { FormEvent, MouseEvent, ReactElement, useEffect, useState } from 'react';
 import * as S from './style';
-import * as Common from '@src/style/common';
 import { useSetRecoilState } from 'recoil';
 
 import PlusIcon from '@assets/plusIcon.svg';
@@ -33,8 +32,8 @@ export default function TodoForm({ closeAddForm }: Props): ReactElement {
     setCheck('');
   };
 
-  const handleTodoSubmit = () => {
-    if (!title) return;
+  const handleTodoSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const newTodo: TodoType = {
       id: Date.now(),
       title,
@@ -62,7 +61,7 @@ export default function TodoForm({ closeAddForm }: Props): ReactElement {
   ));
 
   return (
-    <S.TodoForm title={title}>
+    <S.TodoForm onSubmit={handleTodoSubmit}>
       <label htmlFor='todo-title'></label>
       <input
         name='todo-title'
@@ -92,7 +91,7 @@ export default function TodoForm({ closeAddForm }: Props): ReactElement {
         <button type='button' className='todo-form-cancel-btn' onClick={closeAddForm}>
           취소
         </button>
-        <button type='submit' className='todo-form-submit-btn' onClick={handleTodoSubmit}>
+        <button type='submit' className='todo-form-submit-btn' disabled={!title}>
           확인
         </button>
       </div>

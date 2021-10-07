@@ -3,11 +3,7 @@ import styled from 'styled-components';
 import { CardSize } from '@components/CardList/style';
 import { Button, Input } from '@src/style/common';
 
-type TodoFormType = {
-  title: string;
-};
-
-export const TodoForm = styled.form<TodoFormType>`
+export const TodoForm = styled.form`
   ${CardSize}
   input {
     ${Input}
@@ -55,8 +51,11 @@ export const TodoForm = styled.form<TodoFormType>`
 
     .todo-form-submit-btn {
       color: white;
-      opacity: ${({ title }) => (title ? 1 : 0.5)};
+      opacity: 1;
       background-color: ${({ theme }) => theme.color.blue};
+    }
+    .todo-form-submit-btn:disabled {
+      opacity: 0.5;
     }
   }
 
