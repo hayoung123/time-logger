@@ -32,10 +32,27 @@ export const Card = styled.div`
     margin-bottom: 0.5rem;
   }
 
-  .card-title {
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 600;
     font-size: 1.25rem;
     margin-bottom: 1rem;
+    .card-menu {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .card-menu-dropbox {
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(10%, 105%);
+      }
+    }
   }
 
   .card-check-list {
